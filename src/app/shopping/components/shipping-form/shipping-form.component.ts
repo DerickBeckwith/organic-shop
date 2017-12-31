@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { Order } from "../../../shared/models/order";
+import { Shipping } from '../../../shared/models/shipping';
 
 @Component({
   selector: 'shipping-form',
@@ -13,7 +14,7 @@ import { Order } from "../../../shared/models/order";
 })
 export class ShippingFormComponent implements OnInit, OnDestroy {
   @Input('cart') cart: ShoppingCart;
-  shipping = {}; 
+  shipping: Shipping;
   userSubscription: Subscription;
   userId: string;
   
