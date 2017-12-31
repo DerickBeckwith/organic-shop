@@ -21,10 +21,6 @@ export class ProductFormComponent implements OnInit {
     private route: ActivatedRoute,
     private categoryService: CategoryService, 
     private productService: ProductService) {
-    this.categories$ = categoryService.getAll();
-
-    this.id = this.route.snapshot.paramMap.get('id');
-    if (this.id) this.productService.get(this.id).take(1).subscribe(p => this.product = p);
   }
 
   save(product) { 
@@ -42,6 +38,20 @@ export class ProductFormComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.categories$ = this.categoryService.getAll();
+
+    this.id = this.route.snapshot.paramMap.get('id');
+    if (this.id) {
+      this.productService.get(this.id).take(1).subscribe(p => this.product = p);
+    } else {
+      this.product = {
+        $key: '',
+        title: '',
+        price: null,
+        category: '',
+        imageUrl: ''
+      };
+    }
   }
 
 }
